@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>login UI</title>
+    <link rel="stylesheet" href="../static/login.css">
+   	<script type="text/javascript">
+		
+		 $("#login-button").click(function(event){
+				 event.preventDefault();
+			 
+			 $('form').fadeOut(500);
+			 $('.wrapper').addClass('form-success');
+		});
+		function check()
+	    {
+		  if(form.username.value == "")//如果用户名为空
+		  {
+			alert("您还没有填写用户名！");
+			form.username.focus();
+			return false;
+		  }
+		  if(form.password.value == "")//如果密码为空
+		  {
+			alert("您还没有填写密码！");
+			form.password.focus();
+			return false;
+		  }
+		}		
+	</script>
+</head>
+<body>
+    <div class="box">
+            <h2>登录页面</h2>
+  <form method="post"  autocomplete="off" name='form' class="form" onSubmit="return check()" action="###">
+    <div class="inputBox">
+      <input type="text" name="username" >
+      <label >用户名</label>
+    </div>
+    <div class="inputBox">
+		<input type="password" name="password">
+		<label>密码</label>
+    </div>
+    <div style="text-align:center; vertical-align:middel;">
+    	<!-- <input type="submit" value="登录"> -->
+    	<button type="submit" id="login-button" name='submit' value='submit'>Login</button>
+    </div>
+	  </form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>retrieve</title>
+	<link rel="stylesheet" href="../static/retrieve1.css">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $("#1").click(function(){
+            $("#show_text").html("<p class='model'>形态特征</p><br>\n" +
+                "\t\t\t\t<div id='main'>\n" +
+                "\t\t\t\t\t<p>杆：{{rod}}</p><br>\n" +
+                "\t\t\t\t\t<p>叶：{{leaf}}</p><br>\n" +
+                "\t\t\t\t\t<p>箨：{{sheath}}</p><br>\n" +
+                "\t\t\t\t\t<p>产地：{{othinfo}}</p><br>\n" +
+                "\t\t\t\t\t<p>其他特点：{{proposal}}</p>\n" +
+                "\t\t\t\t</div>");
+            $("#1").css({"backgroundColor":"#4CAF50","color": "white"});
+            $("#2,#3,#4").css({"backgroundColor":"#d2d8ae","color": "#666"});
+            });
+
+        $("#2").click(function(){
+            $("#show_text").html("<h1>待补充</h1>");
+            $("#1,#3,#4").css({"backgroundColor":"#d2d8ae","color": "#666"});
+            $("#2").css({"backgroundColor":"#4CAF50","color": "white"});
+            });
+        $("#3").click(function(){
+            $.get("http://127.0.0.1:5000/retrieve/bamboo_picture_path/"+{{ Id }},function(data,status){
+                let path_list = data.split(";");
+                $("#show_text").html("<div id='load_picture'></div>");
+                for (let i = 0; i < path_list.length; i++){
+                    s = "<img class='pictures' " + "src='" + path_list[i] + "' />";
+                    $("#load_picture").append(s);
+                }
+                /*
+                    #load_picture:乳白色框里又套的一个框
+                    #pictures:里边的图片
+                 */
+                $("#load_picture").css({"padding-top":"20px","display":"flex","justify-content":"space-around","flex-wrap":"wrap"});
+                $(".pictures").css({"width":"200px","height":"200px","display":"block"});
+                $("#1,#2,#4").css({"backgroundColor":"#d2d8ae","color": "#666"});
+                $("#3").css({"backgroundColor":"#4CAF50","color": "white"});
+                });
+        });
+	    $("#4").click(function(){
+		    $("#show_text").html("我是一张地图");
+        	$("#imagg2").css({"width":"100%","height":"600px"});
+        	$("#2,#1,#3").css({"backgroundColor":"#d2d8ae","color": "#666"});
+            $("#4").css({"backgroundColor":"#4CAF50","color": "white"});
+	        });
+        });
+    </script>
+</head>
+
+<body>
+	<!-- 导航栏 -->
+	<div id="nav">
+		<li><a class="nav active" href="/">主页</a></li>
+		<li><a class="nav" href="#picture">图库</a></li>
+		<li><a class="nav" href="#all">所有</a></li>
+		<li><a class="nav" href="#another">占位</a></li>
+		<li><a class="nav" href="#about">关于</a></li>
+		<li style="float:right">
+            <a class="nav active" href="/retrieve/chinese?before=chinese">中文</a>
+            <a class="nav active" href="/retrieve/english?before=chinese">English</a>
+		    <a class="nav active" href="#administator login">管理员登录</a>
+        </li>
+	</div>
+	
+	<!-- 查找部分 -->
+	<div id="search">
+		<div id="center">
+				<form class="center" method="post">
+					<input class="input" type="text" name="search" placeholder="请输入植物名称">
+					<input class="butten" type="submit" value="查询">
+				</form>
+				<p>
+					{% for message in get_flashed_messages() %}
+						{{message}}
+					{% endfor %}
+				</p>
+		</div>
+	</div>
+	
+	<!-- 名称展示部分 -->
+	<div id="shu">
+		<div id="text">
+			<!-- 导入数据 属类，导入数据 竹子名称 -->
+			<!-- <p class="shu">某某属</p><br> -->
+			<p class="name">名称：{{b_name}}</p>
+			<!-- <p class="name">{{eglish_name}}</p> -->
+		</div>
+		<!-- 右图片部分 -->
+		<div id="picture">
+			<img class="picture" src="../static/part1.jpg" width=70% height=70%>
+		</div>
+	</div>
+	
+	<!-- 详细数据展示部分以及左导航栏部分 -->
+	<div id="zhanshi">
+		<!-- 左导航栏 -->
+		<div id="nav_left">
+			<div id="nav_left_all">
+				<ul class="nav_left">
+				<li><a class="nav_left_a ex">导航栏</a></li>
+				<li><a class="nav_left_a" href="#search">搜索</a></li>
+				<li><a class="nav_left_a" href="#nav">回到顶部</a></li>
+				<li><img src="../static/nav.jpg" width=200px height=200px></li>
+				</ul>
+			</div>
+		</div>
+		<div id="choose">
+			<ul class="choose">
+			  <li><a class="choose_a active" id="1" href="#home">竹子百科</a></li>
+			  <li><a class="choose_a" id="2" href="#news">植物志</a></li>
+			  <li><a class="choose_a" id="3" href="#contact">竹子图片</a></li>
+			  <li><a class="choose_a" id="4" href="#about">分布区域</a></li>
+			</ul>
+		</div>
+		<div id="show">
+			<div id="show_text">
+				<p class='model'>形态特征</p><br>
+				<div id='main'>
+					<p>杆：{{rod}}</p><br>
+					<p>叶：{{leaf}}</p><br>
+					<p>箨：{{sheath}}</p><br>
+					<p>产地：{{othinfo}}</p><br>
+					<p>其他特点：{{proposal}}</p>
+				</div>
+            </div>
+
+		</div>
+	</div>
+</body>
+</html>

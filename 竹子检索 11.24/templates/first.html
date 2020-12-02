@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>homepage</title>
+	<link rel="stylesheet" type="text/css" href="../static/first1.css">
+	<script type="text/javascript">
+		function validateForm(){
+		var x=document.forms["search"].value;
+		if (x==null || x==""){
+		  alert("未查到");
+		  return false;
+		  }
+		}
+	</script>
+</head>
+<body>
+	<!-- 导航栏部分 -->
+	<div id="nav">
+		<li><a class="nav active" href="#homepage">主页</a></li>
+		<li><a class="nav" href="#picture">图库</a></li>
+		<li><a class="nav" href="#all">所有</a></li>
+		<li><a class="nav" href="#another">占位</a></li>
+		<li><a class="nav" href="#about">关于</a></li>
+		<li style="float:right">
+		<a class="nav active" href="/login">管理员登录</a></li>
+	</div>
+	
+	<div class="searchdiv">
+		<form class="searchinput" method="post">
+			<input type="text" class="user-input" name="search" placeholder="请输入内容"><br>
+			<input class="user-btn" type="submit" value="搜索">
+		</form>
+		<p style="display: none;">
+			{% for message in get_flashed_messages() %}
+				{{message}}
+			{% endfor %}
+		</p>
+
+
+	</div>
+<dir class="maindiv">
+	<div class="f1">
+		<div class="img1">                     
+				<div class="title" style="padding: 5px">分类名称 铁竹 </div> 
+				<div class="img1_1"><a href="/retrieve"><img src="../static/part1.jpg" width="100%" height="100%" style="border-radius: 10px;"></a></div>
+				<div style="width: 200px;position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹等。            
+					 </div>                   
+			</div>
+		<div class="img1">
+				<div class="title" style="padding: 5px">分类名称 铁竹 </div> 
+				<div class="img1_1" ><a href="/retrieve"><img src="../static/part1.jpg" width="100%" height="100%" style="border-radius: 10px;"></a></div>
+				<div style="width: 100%;position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹等。            
+					 </div>                   
+			</div>
+			<div class="img1">
+					<div class="title" style="padding: 5px">分类名称 铁竹 </div> 
+					<div class="img1_1"><a href="/retrieve"><img src="../static/part1.jpg" width="100%" height="100%" style="border-radius: 10px;"></a></div>
+					<div style="width: 200px;position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹等。            
+						 </div>                   
+				</div>
+			<div class="img1">
+					<div class="title" style="padding: 5px">分类名称 铁竹 </div> 
+					<div class="img1_1"><a href="/retrieve"><img src="../static/part1.jpg" width="100%" height="100%" style="border-radius: 10px;"></a></div>
+					<div style="width: 200px;position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹等。            
+						 </div>                   
+				</div>
+	</div>
+	<div class="f2">
+		<div class="concent1">
+			<div class="concent1_1"><img src="../static/11.jpg" width="100%" height="100%" style="border-radius: 10px;"></div>
+			<div class="concent1_2"><h1 style="text-align: center;">云南竹类百科</h1></div>
+		</div>
+		<div class="concent2">
+			<table width="100%">
+                <tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+				 <tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+				 <tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+				<tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+				<tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+				<tr>
+				<td  width="100%" style="position: relative;">竹，又名竹子。品种繁多，有毛竹、麻竹、箭竹。</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
